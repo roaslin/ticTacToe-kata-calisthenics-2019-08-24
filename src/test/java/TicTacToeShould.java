@@ -39,4 +39,17 @@ public class TicTacToeShould {
         ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
         ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(0));
     }
+
+    @Test(expected = EndGameException.class)
+    public void end_game_when_all_position_are_placed() {
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(1));
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(2));
+        ticTacToe.place(Player.O, new HorizontalPosition(1), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(1), new VerticalPosition(1));
+        ticTacToe.place(Player.O, new HorizontalPosition(2), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(2), new VerticalPosition(1));
+        ticTacToe.place(Player.O, new HorizontalPosition(2), new VerticalPosition(2));
+        ticTacToe.place(Player.X, new HorizontalPosition(1), new VerticalPosition(2));
+    }
 }

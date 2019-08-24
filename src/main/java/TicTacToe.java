@@ -15,5 +15,9 @@ public class TicTacToe {
         }
         this.lastPlaced = player;
         board.mark(player, horizontalPosition, verticalPosition);
+
+        if(board.isEndGame()){
+            throw new EndGameException();
+        }
     }
 }
