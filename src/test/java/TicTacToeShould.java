@@ -19,4 +19,13 @@ public class TicTacToeShould {
         TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.place(Player.X);
     }
+
+    @Test
+    public void alternate_players() {
+        TicTacToe ticTacToe = new TicTacToe();
+        ticTacToe.place(Player.X);
+        ticTacToe.place(Player.O);
+        ticTacToe.place(Player.X);
+        ticTacToe.place(Player.O);
+    }
 }
