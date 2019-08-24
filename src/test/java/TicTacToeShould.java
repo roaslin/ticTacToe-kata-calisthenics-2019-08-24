@@ -58,4 +58,23 @@ public class TicTacToeShould {
         ticTacToe.place(Player.O, new HorizontalPosition(2), new VerticalPosition(2));
         ticTacToe.place(Player.X, new HorizontalPosition(1), new VerticalPosition(2));
     }
+
+    @Test(expected = PlayerXWinsException.class)
+    public void player_X_has_won_placing_all_upper_horizontal() {
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.O, new HorizontalPosition(1), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(1));
+        ticTacToe.place(Player.O, new HorizontalPosition(2), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(2));
+    }
+
+    @Test(expected = PlayerOWinsException.class)
+    public void player_O_has_won_placing_all_upper_horizontal() {
+        ticTacToe.place(Player.X, new HorizontalPosition(1), new VerticalPosition(0));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(1), new VerticalPosition(1));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(1));
+        ticTacToe.place(Player.X, new HorizontalPosition(2), new VerticalPosition(2));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(2));
+    }
 }

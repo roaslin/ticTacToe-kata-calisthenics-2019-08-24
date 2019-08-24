@@ -20,6 +20,16 @@ public class TicTacToe {
         this.lastPlaced = player;
         board.mark(player, horizontalPosition, verticalPosition);
 
+        if (board.hasAWinner()) {
+            if (Player.X == player) {
+                throw new PlayerXWinsException("Player " + player + "wins!");
+            }
+
+            if (Player.O == player) {
+                throw new PlayerOWinsException("Player " + player + "wins!");
+            }
+        }
+
         if (board.isEndGame()) {
             throw new EndGameException();
         }
