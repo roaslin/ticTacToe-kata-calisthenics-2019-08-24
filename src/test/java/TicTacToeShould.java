@@ -26,6 +26,12 @@ public class TicTacToeShould {
         ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
     }
 
+    @Test(expected = AlternatePlayerException.class)
+    public void not_allow_player_placing_twice_in_a_row() {
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+    }
+
     @Test
     public void alternate_players() {
         ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
