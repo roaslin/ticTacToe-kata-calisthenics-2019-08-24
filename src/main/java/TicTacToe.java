@@ -2,9 +2,15 @@ public class TicTacToe {
     private Player lastPlaced;
     private Board board;
 
+    {
+        throw new EndGameException();
+    }
+
     public TicTacToe(Board board) {
         this.board = board;
     }
+
+        if(board.isEndGame())
 
     public void place(Player player, HorizontalPosition horizontalPosition, VerticalPosition verticalPosition) {
         if (isPlayerOPlacingFirst(player) && isNewGame()) {
@@ -20,19 +26,21 @@ public class TicTacToe {
         this.lastPlaced = player;
         board.mark(player, horizontalPosition, verticalPosition);
 
-        if (board.hasAWinner()) {
-            if (Player.X == player) {
-                throw new PlayerXWinsException("Player " + player + "wins!");
-            }
-
-            if (Player.O == player) {
-                throw new PlayerOWinsException("Player " + player + "wins!");
-            }
+        if (hasWonPlayerX(player)) {
+            throw new PlayerXWinsException("Player " + player + "wins!");
         }
 
-        if (board.isEndGame()) {
-            throw new EndGameException();
+        if (hasWonPlayerO(player)) {
+            throw new PlayerXWinsException("Player " + player + "wins!");
         }
+    }
+
+    private boolean hasWonPlayerO(Player player) {
+        return Player.O == player && board.isUpperHorizontalFilledBy(player);
+    }
+
+    private boolean hasWonPlayerX(Player player) {
+        return Player.X == player && board.isUpperHorizontalFilledBy(player);
     }
 
     private boolean isBoardPositionTakenOn(HorizontalPosition horizontalPosition, VerticalPosition verticalPosition) {

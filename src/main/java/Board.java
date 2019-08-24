@@ -24,17 +24,10 @@ public class Board {
         return true;
     }
 
-    public boolean hasAWinner() {
-        if(Player.X == values[0][0]
-                && Player.X == values[0][1]
-                && Player.X == values[0][2]){
-
-            return true;
-        }
-
-        if(Player.O == values[0][0]
-                && Player.O == values[0][1]
-                && Player.O == values[0][2]){
+    public boolean isUpperHorizontalFilledBy(Player player) {
+        if(player == values[0][0]
+                && player == values[0][1]
+                && player == values[0][2]){
 
             return true;
         }
