@@ -12,24 +12,31 @@ public class TicTacToeShould {
 
     @Before
     public void setUp() throws Exception {
-        ticTacToe = new TicTacToe();
+        Board board = new Board(new Player[3][3]);
+        ticTacToe = new TicTacToe(board);
     }
 
     @Test(expected = PlayerXPlacesFirst.class)
     public void not_allow_that_player_O_places_first() {
-        ticTacToe.place(Player.O);
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(0));
     }
 
     @Test
     public void allow_player_X_place_first() {
-        ticTacToe.place(Player.X);
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
     }
 
     @Test
     public void alternate_players() {
-        ticTacToe.place(Player.X);
-        ticTacToe.place(Player.O);
-        ticTacToe.place(Player.X);
-        ticTacToe.place(Player.O);
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(1));
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(2));
+        ticTacToe.place(Player.O, new HorizontalPosition(1), new VerticalPosition(0));
+    }
+
+    @Test(expected = PlacedInSameBoardPositionException.class)
+    public void not_allow_players_to_place_on_a_played_position() {
+        ticTacToe.place(Player.X, new HorizontalPosition(0), new VerticalPosition(0));
+        ticTacToe.place(Player.O, new HorizontalPosition(0), new VerticalPosition(0));
     }
 }
